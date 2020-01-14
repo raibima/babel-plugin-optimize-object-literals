@@ -20,14 +20,14 @@ module.exports = function({ types: t }) {
         }
         const obj = convert(path.node, t);
         const parsed = JSON.stringify(obj)
-          .replace(/\\n/g, "\\n")
-          .replace(/\\'/g, "\\'")
-          .replace(/\\"/g, '\\"')
-          .replace(/\\&/g, "\\&")
-          .replace(/\\r/g, "\\r")
-          .replace(/\\t/g, "\\t")
-          .replace(/\\b/g, "\\b")
-          .replace(/\\f/g, "\\f");
+          .replace(/[\\]/g, "\\\\")
+          .replace(/[\"]/g, '\\"')
+          .replace(/[\/]/g, "\\/")
+          .replace(/[\b]/g, "\\b")
+          .replace(/[\f]/g, "\\f")
+          .replace(/[\n]/g, "\\n")
+          .replace(/[\r]/g, "\\r")
+          .replace(/[\t]/g, "\\t");
         path.replaceWith(
           t.callExpression(
             t.memberExpression(t.identifier("JSON"), t.identifier("parse")),

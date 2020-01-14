@@ -11,7 +11,7 @@ it("transforms object literals with @stringify directive", () => {
   );
   expect(code).toMatchInlineSnapshot(`
     "// @stringify
-    const obj = JSON.parse(\`{\\"foo\\":\\"bar\\"}\`);"
+    const obj = JSON.parse(\`{\\\\\\"foo\\\\\\":\\\\\\"bar\\\\\\"}\`);"
   `);
 });
 
@@ -43,7 +43,7 @@ it("should work even when there are more than 1 leading comments", () => {
     "// john
     // doe
     // @stringify
-    const obj = JSON.parse(\`{\\"foo\\":\\"bar\\"}\`);"
+    const obj = JSON.parse(\`{\\\\\\"foo\\\\\\":\\\\\\"bar\\\\\\"}\`);"
   `);
 });
 
@@ -57,6 +57,6 @@ it("should work with \\n character (produces valid output)", () => {
   );
   expect(code).toMatchInlineSnapshot(`
     "// @stringify
-    const obj = JSON.parse(\`{\\"foo\\":\\"\\\\n bar \\\\n\\"}\`);"
+    const obj = JSON.parse(\`{\\\\\\"foo\\\\\\":\\\\\\"\\\\\\\\n bar \\\\\\\\n\\\\\\"}\`);"
   `);
 });
