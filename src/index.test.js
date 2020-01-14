@@ -46,3 +46,17 @@ it("should work even when there are more than 1 leading comments", () => {
     const obj = JSON.parse(\`{\\"foo\\":\\"bar\\"}\`);"
   `);
 });
+
+it("should work with \\n character (produces valid output)", () => {
+  const { code } = babel.transform(
+    `
+    // @stringify
+    const obj = { foo: '\\n bar \\n' };
+  `,
+    { plugins: [plugin] }
+  );
+  expect(code).toMatchInlineSnapshot(`
+    "// @stringify
+    const obj = JSON.parse(\`{\\"foo\\":\\"\\\\n bar \\\\n\\"}\`);"
+  `);
+});
