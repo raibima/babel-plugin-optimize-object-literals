@@ -10,7 +10,11 @@ module.exports = function({ types: t }) {
         if (!parentNode.leadingComments) {
           return;
         }
-        const comment = parentNode.leadingComments[0].value.trim();
+        // get the last comment from the leadingComments list
+        // and trim it
+        const comment = parentNode.leadingComments[
+          parentNode.leadingComments.length - 1
+        ].value.trim();
         if (comment !== "@stringify") {
           return;
         }

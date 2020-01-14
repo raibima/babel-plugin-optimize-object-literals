@@ -28,3 +28,21 @@ it("doesn't transform object literals with no @stringify directive", () => {
     };"
   `);
 });
+
+it("should work even when there are more than 1 leading comments", () => {
+  const { code } = babel.transform(
+    `
+    // john
+    // doe
+    // @stringify
+    const obj = { foo: 'bar' };
+  `,
+    { plugins: [plugin] }
+  );
+  expect(code).toMatchInlineSnapshot(`
+    "// john
+    // doe
+    // @stringify
+    const obj = JSON.parse(\`{\\"foo\\":\\"bar\\"}\`);"
+  `);
+});
