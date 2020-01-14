@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-optimize-object-literals",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Babel plugin to optimize object literals with directives",
   "main": "src/index.js",
   "repository": "https://github.com/raibima/babel-plugin-optimize-object-literals",
